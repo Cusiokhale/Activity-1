@@ -16,32 +16,46 @@ from library_item.library_item import LibraryItem
 
 class TestLibraryItem (unittest.TestCase):
     def setUp(self):
-        self.libraryitem = LibraryItem("commanding the day","Paul Eneche", Genre.NON_FICTION)
+        self.libraryitem = LibraryItem(1, "commanding the day","Paul Eneche", Genre.NON_FICTION, False)
  
     def test_init_valid_input_attribute_set(self):
-        book= LibraryItem("commanding the day","Paul Eneche", Genre.NON_FICTION)
+        book= LibraryItem(1, "commanding the day","Paul Eneche", Genre.NON_FICTION, False)
 
+        self.assertEqual(1, 
+                         book._LibraryItem__item_id )
         self.assertEqual("commanding the day", 
                          book._LibraryItem__title )
         self.assertEqual("Paul Eneche", 
                          book._LibraryItem__author )
         self.assertEqual(Genre.NON_FICTION, 
                          book._LibraryItem__genre )
-        
+        self.assertEqual(False, 
+                         book._LibraryItem__is_borrowed )
+
+    def test_init_blank_item_id_raises_value_error(self):
+
+        with self.assertRaises(ValueError):
+            LibraryItem("", "commanding the day","Paul Eneche", Genre.NON_FICTION, False)
+     
     def test_init_blank_title_raises_value_error(self):
 
         with self.assertRaises(ValueError):
-            LibraryItem("", "Paul Eneche", Genre.NON_FICTION)
+            LibraryItem(1, "", "Paul Eneche", Genre.NON_FICTION, False)
     
     def test_init_blank_author_raises_value_error(self):
 
         with self.assertRaises(ValueError):
-            LibraryItem("commanding the day", "", Genre.NON_FICTION)
+            LibraryItem(1, "commanding the day", "", Genre.NON_FICTION, False)
 
     def test_init_invalid_genre_raises_exception(self):
 
         with self.assertRaises(ValueError):
-            LibraryItem("commanding the day", "", "Drama")
+            LibraryItem(1, "commanding the day", "", "Drama", False)
+
+    def test_init_invalid_is_borrowed_raises_exception(self):
+
+        with self.assertRaises(ValueError):
+            LibraryItem(1, "commanding the day", "", "Drama", "")
     
     def test_title_accessor_valid_libraryitem_title_returned(self):
 

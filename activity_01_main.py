@@ -23,11 +23,13 @@ def main():
     # Use your own unique valid values for the inputs to the class.
     try:
         in_him_book = LibraryItem(\
-            "In Him","Kenneth Hagin", Genre.NON_FICTION)
+            1, "In Him","Kenneth Hagin", Genre.NON_FICTION, False)
         
+        print("Id: ", in_him_book.item_id)
         print("Title: ", in_him_book.title)
         print("Author: ", in_him_book.author)
         print("Genre: ", in_him_book.genre)
+        print("Is Borrowed: ", in_him_book.is_borrowed)
 
     except ValueError as e:
         print(e)
@@ -37,8 +39,7 @@ def main():
     # each of the attributes of the LibraryItem instance.
 
     try:
-        invalid_library_item = LibraryItem("", "Benny Hinn", "Drama")
-        print(invalid_library_item)
+        invalid_library_item = LibraryItem(1, "", "Benny Hinn", "Drama", False)
 
     except ValueError as e:
         print(e)
