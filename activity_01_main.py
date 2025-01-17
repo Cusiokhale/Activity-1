@@ -7,6 +7,10 @@ __version__ = "1.0.0"
 __credits__ = ""
 
 
+from genre.genre import Genre
+from library_item.library_item import LibraryItem
+
+
 def main():
     """Test the functionality of the methods encapsulated 
     in this project.
@@ -17,10 +21,27 @@ def main():
 
     # 1. Code a statement which creates an instance of the LibraryItem class with valid inputs.
     # Use your own unique valid values for the inputs to the class.
+    try:
+        in_him_book = LibraryItem(\
+            "In Him","Kenneth Hagin", Genre.NON_FICTION)
+        
+        print("Title: ", in_him_book.title)
+        print("Author: ", in_him_book.author)
+        print("Genre: ", in_him_book.genre)
+
+    except ValueError as e:
+        print(e)
 
 
     # 2. Using the instance defined above, and the class Accessors, print 
     # each of the attributes of the LibraryItem instance.
+
+    try:
+        invalid_library_item = LibraryItem("", "Benny Hinn", "Drama")
+        print(invalid_library_item)
+
+    except ValueError as e:
+        print(e)
 
     
 
